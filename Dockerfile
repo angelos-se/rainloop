@@ -1,14 +1,13 @@
-FROM alpine:3.10
+FROM alpine
 
 LABEL description "Rainloop is a simple, modern & fast web-based client" \
-      maintainer="Hardware <contact@meshup.net>"
+      maintainer="angelos-se <https://github.com/angelos-se/>"
 
 ARG GPG_FINGERPRINT="3B79 7ECE 694F 3B7B 70F3  11A4 ED7C 49D9 87DA 4591"
 
 ENV UID=991 GID=991 UPLOAD_MAX_SIZE=25M LOG_TO_STDOUT=false MEMORY_LIMIT=128M
 
-RUN echo "@community https://nl.alpinelinux.org/alpine/v3.10/community" >> /etc/apk/repositories \
- && apk -U upgrade \
+RUN apk -U upgrade \
  && apk add -t build-dependencies \
     gnupg \
     openssl \
@@ -18,20 +17,20 @@ RUN echo "@community https://nl.alpinelinux.org/alpine/v3.10/community" >> /etc/
     nginx \
     s6 \
     su-exec \
-    php7-fpm@community \
-    php7-curl@community \
-    php7-iconv@community \
-    php7-xml@community \
-    php7-dom@community \
-    php7-openssl@community \
-    php7-json@community \
-    php7-zlib@community \
-    php7-pdo_pgsql@community \
-    php7-pdo_mysql@community \
-    php7-pdo_sqlite@community \
-    php7-sqlite3@community \
-    php7-ldap@community \
-    php7-simplexml@community \
+    php7-fpm \
+    php7-curl \
+    php7-iconv \
+    php7-xml \
+    php7-dom \
+    php7-openssl \
+    php7-json \
+    php7-zlib \
+    php7-pdo_pgsql \
+    php7-pdo_mysql \
+    php7-pdo_sqlite \
+    php7-sqlite3 \
+    php7-ldap \
+    php7-simplexml \
  && cd /tmp \
  && wget -q https://www.rainloop.net/repository/webmail/rainloop-community-latest.zip \
  && wget -q https://www.rainloop.net/repository/webmail/rainloop-community-latest.zip.asc \
